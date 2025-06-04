@@ -1,6 +1,6 @@
 # 🔗 Linktreell 
 
-*Aplicação estilo Linktree desenvolvido em Javascript com Node.js*  
+**Aplicação estilo Linktree desenvolvida em Javascript com Node.js, com foco em Análise e Visualização de Dados.**
 
 [![Licença](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-5.0.6-green.svg)]()
@@ -20,40 +20,40 @@
 9. [Contribuição](#-contribuição)  
 10. [Licença](#-licença)  
 11. [Contato](#-contato)  
-12. [Fontes e Recursos](#-fontes-e-recursos)  
+12. [Recursos Adicionais](#-recursos-adicionais)  
 
 ## 💻 Sobre o Projeto  
 
-O *Linktreell* é um projeto pessoal de uma réplica do aplicativo Linktree desenvolvido com foco em Análise e Visualização de Dados com Javascript.
+O **Linktrell** é uma aplicação pessoal que replica as funcionalidades do Linktree, mas com um diferencial: o foco em **Análise e Visualização de Dados** utilizando Javascript e Node.js.
 
-- *Motivação*: Aprimorar habilidades de desenvolvimento web, pensamento crítico e análise de dados.
+- *Motivação*: Aprimorar habilidades de desenvolvimento web, pensamento crítico e principalmente análise de dados.
 - *Público-alvo*: Estudantes de programação, desenvolvedores iniciantes e analistas.
 
 ## 🎯 Objetivos  
 
 ### 🛠️ Técnicos  
-- Implementar corretamente lógica de BFF (Back-end For Front-end)
-- Lógica mínima de proteção (Express, .env, midlleware-connection, session-guard)
-- Foco em analisar métricas e dados, gerando dashbords.
+- Implementar corretamente lógica de **BFF** (Back-end For Front-end)
+- Garantir uma segurança mínima com Express, variáveis de ambiente, middleware de conexão e guarda de sessão.
+- Gerar dashboards para analisar métricas e dados de forma visual e intuitiva.
 
 ## 🚀 Tecnologias  
 
 *Núcleo do Sistema*  
-- Node.js
 - Javascript
+- Node.js
 - Express
 
 ## ✨ Funcionalidades  
 
-- ✅ Tela inicial (index): Janela do visitante linktree.
-- ✅ Tela de login: Acesse rota de admin.
-    - Senha: admin123
+- ✅ Tela inicial (index): A visualização pública do seu Linktree.
+- ✅ Tela de login: Acesse rota de administração.
+    - Senha: admin123 (para fins de demonstração).
 - ✅ Tela de Insights: Visualize e avalie todas as métricas e painéis para análise de dados.
-- ✅ Design descomplicado: Intuitivo e simples de utilizar.
+- ✅ Design descomplicado: Interface descomplicada e fácil de usar.
 
 ## ⚙️ Pré-requisitos  
 
-- Node.js corretamente instalado 
+- Node.js (Necessário que esteja instalado corretamente.)
 - 2GB+ RAM (4GB recomendado)
 - Conexão estável à internet  
 
@@ -85,7 +85,7 @@ PORT=3000
 PASSWORD_HASH = 240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9
 SESSION_SECRET = 'sua_senha_secreta_aqui'
 ```
-> Ps: Só estpu disponibilizando o hash porque já disponibilizei a senha para total acesso (E essa aplicação não está em deploy)
+> Ps: O hash da senha (PASSWORD_HASH) está exposto porque a senha de acesso (admin123) já foi informada e esta aplicação não está em deploy.
 
 ## ❗ Como Utilizar
 
@@ -99,7 +99,9 @@ cd backend
 node index.js
 ```
 
-3. Acesse no seu navegador as URLs http://localhost:3000/index.html#, http://localhost:3000/login.html#
+3. Acesse no seu navegador:
+- Página Principal: http://localhost:3000/index.html
+- Página de Login: http://localhost:3000/login.html
 
 ### ▶️ Demonstração
 
@@ -108,7 +110,7 @@ node index.js
 
 _(Gif meramente ilustrativo)_
 
-## 📂 Arquitetura do Sistema  
+## 📂 Estrutura do Projeto  
 ```plaintext
 
 ├── backend/                    # Pasta de serviço backend  
@@ -149,7 +151,7 @@ MIT License - Veja [LICENSE](LICENSE) para detalhes.
 - **Autor**: [Lucas Leria](https://github.com/lucasgleria)  
 - **LinkedIn**: [lucasgleria](https://www.linkedin.com/in/lucasgleria/)  
 
-## 🔍 Recursos Complementares
+## 🔍 Recursos Adicionais
 
 - [Linktree](https://linktr.ee/) - Referência inicial
 - [Node.js](https://nodejs.org/pt) - Documentação oficial
