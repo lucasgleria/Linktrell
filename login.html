@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Painel de Métricas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800">🔐 Login Painel de Métricas</h1>
+    
+    <input id="password-input" type="password" placeholder="Digite a senha"
+      class="w-full p-2 border rounded mb-4 focus:outline-none focus:ring focus:border-blue-300">
+    
+    <button id="login-button"
+      class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+      Entrar
+    </button>
+
+    <p id="login-error" class="text-red-500 mt-2 hidden">Senha incorreta.</p>
+  </div>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

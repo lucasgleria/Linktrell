@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meus Links Interativo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-orange-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-orange-200 p-8 rounded-xl shadow-lg w-full max-w-sm mx-auto mt-20 relative z-10">
+    <div class="flex flex-col items-center mb-6">
+      <div class="bg-orange-400 rounded-full p-4 mb-4">
+        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.121 17.804A4 4 0 017 14h10a4 4 0 011.879 3.804M15 10a3 3 0 10-6 0 3 3 0 006 0z"/>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold text-orange-800">Meus Links</h1>
+    </div>
+
+    <div id="links-container" class="space-y-4"></div>
+  </div>
+
+  <script type="module" src="js/utils/device-detector.js"></script>
+  <script type="module" src="js/core/page-tracker.js"></script>
+  <script type="module" src="js/links.js"></script>
+  <script type="module" src="js/animations.js"></script>
+  <script type="module" src="js/init-trackers.js"></script>
+  
+  <script type="module">
+    import { incrementPageView } from './js/core/page-tracker.js';
+    
+    // Garante que o DOM esteja completamente carregado antes de tentar acessar window.userCountry
+    // e chamar incrementPageView.
+    document.addEventListener('DOMContentLoaded', () => {
+      // Log para verificar o valor de window.userCountry
+      console.log("[index.html DEBUG] Valor de window.userCountry no DOMContentLoaded:", window.userCountry);
+
+      // Passa o país detectado pelo servidor (disponível em window.userCountry)
+      console.log("[index.html] Chamando incrementPageView com país:", window.userCountry);
+      incrementPageView(window.userCountry);
+      console.log("[index.html] incrementPageView chamado.");
+    });
+  </script>
+</body>
+</html>

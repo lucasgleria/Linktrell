@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel de Insights</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles for the Inter font */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 bg-white rounded-xl shadow-lg w-full max-w-4xl mb-6">
+    <div class="p-8 md:border-r md:border-gray-300 md:border-b md:border-gray-300">
+      <h1 class="text-2xl font-bold mb-6 text-gray-800">📊 Métricas Principais</h1>
+      <div id="metrics-display" class="space-y-2 text-gray-700"></div>
+    </div>
+
+    <div class="p-8 md:border-b md:border-gray-300">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">📈 Dashboard</h2>
+      <canvas id="dashboard-chart"></canvas>
+    </div>
+
+    <div class="p-8 md:border-r md:border-gray-300">
+      <h1 class="text-2xl font-bold mb-6 text-gray-800">📊 Métricas Secundárias</h1>
+      <div id="secondary-metrics-display" class="space-y-2 text-gray-700"></div>
+    </div>
+
+    <div class="p-8">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">📈 Dashboard Secundário</h2>
+      <canvas id="secondary-dashboard-chart-devices"></canvas>
+      <canvas id="secondary-dashboard-chart-countries" class="mt-4"></canvas>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-lg w-full max-w-4xl mb-6">
+    <div class="p-8">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">🔬 Análise de Dados Detalhada - Gráficos expansíveis!</h2>
+      
+        <div class="p-4 border border-gray-300 rounded-lg mb-6">
+          <h3 class="text-xl font-semibold mb-4 text-gray-700">Insights Diarios</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Gráfico 1: Visualizações -->
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="daily-views-chart" class="w-full h-64"></canvas>
+            </div>
+
+            <!-- Gráfico 2: Cliques por Botões -->
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="daily-clicks-buttons-chart" class="w-full h-64"></canvas>
+            </div>
+
+            <!-- Gráfico 3: Cliques por Dispositivos -->
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="daily-clicks-devices-chart" class="w-full h-64"></canvas>
+            </div>
+
+            <!-- Gráfico 4: Visualizações por Dispositivos -->
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="daily-views-devices-chart" class="w-full h-64"></canvas>
+            </div>
+
+            <!-- Gráfico 5: Cliques por País -->
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="daily-clicks-countries-chart" class="w-full h-64"></canvas>
+            </div>
+
+            <!-- Gráfico 6: Visualizações por País -->
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="daily-views-countries-chart" class="w-full h-64"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 border border-gray-300 rounded-lg mb-6">
+          <h3 class="text-xl font-semibold mb-4 text-gray-700">Insights Semanais</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="weekly-views-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="weekly-clicks-buttons-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="weekly-clicks-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="weekly-views-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="weekly-clicks-countries-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="weekly-views-countries-chart" class="w-full h-64"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 border border-gray-300 rounded-lg mb-6">
+          <h3 class="text-xl font-semibold mb-4 text-gray-700">Insights Mensais Históricos</h3>
+
+          <select id="select-historical-month" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500"></select>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="historical-views-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="historical-clicks-buttons-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="historical-clicks-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="historical-views-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="historical-clicks-countries-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="historical-views-countries-chart" class="w-full h-64"></canvas>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="p-4 border border-gray-300 rounded-lg mb-6">
+          <h3 class="text-xl font-semibold mb-4 text-gray-700">Visão Geral de Dois Meses</h3>
+
+          <div class="analysis-panel mb-4">
+            <label for="select-two-month-1">Comparar mês:</label>
+            <select id="select-two-month-1" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500"></select>
+
+            <label for="select-two-month-2">com mês:</label>
+            <select id="select-two-month-2" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500"></select>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-month-views-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-month-clicks-buttons-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-month-clicks-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-month-views-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-month-clicks-countries-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-month-views-countries-chart" class="w-full h-64"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 border border-gray-300 rounded-lg mb-6">
+          <h3 class="text-xl font-semibold mb-4 text-gray-700">Insights Anuais</h3>
+
+          <select id="select-yearly" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500"></select>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="yearly-views-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="yearly-clicks-buttons-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="yearly-clicks-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="yearly-views-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="yearly-clicks-countries-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="yearly-views-countries-chart" class="w-full h-64"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 border border-gray-300 rounded-lg mb-6">
+          <h3 class="text-xl font-semibold mb-4 text-gray-700">Visão Geral de Dois Anos</h3>
+
+          <div class="year-selectors mb-4">
+            <label for="select-two-year-1">Comparar ano:</label>
+            <select id="select-two-year-1" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500"></select>
+
+            <label for="select-two-year-2">com ano:</label>
+            <select id="select-two-year-2" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500"></select>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-year-views-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-year-clicks-buttons-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-year-clicks-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-year-views-devices-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-year-clicks-countries-chart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+              <canvas id="two-year-views-countries-chart" class="w-full h-64"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div id="chart-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+            <div class="bg-white p-4 rounded-lg max-w-5xl w-full relative">
+                <button id="close-chart-modal" class="absolute top-2 right-2 text-gray-700 hover:text-red-500 text-2xl">&times;</button>
+                <canvas id="expanded-chart" class="w-full h-[500px] block"></canvas>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full max-w-4xl flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4 mt-4">
+    <button id="reset-button" class="w-full md:w-auto flex-1 bg-red-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105">
+      Resetar Métricas
+    </button>
+    <button id="reset-clicks" class="w-full md:w-auto flex-1 bg-yellow-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-yellow-600 transition duration-300 ease-in-out transform hover:scale-105">
+      Resetar Cliques
+    </button>
+    <button id="logout-button" class="w-full md:w-auto flex-1 bg-gray-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105">
+      Sair
+    </button>
+  </div>
+
+  <script type="module" src="js/core/clicker-tracker.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="js/metrics/metrics-interface.js"></script>
+  <script type="module" src="js/core/page-tracker.js"></script>
+  <script type="module" src="js/utils/device-detector.js"></script>
+  <script type="module" src="js/metrics/secondary-metrics.js"></script>
+  <script type="module" src="js/metrics/secondary-dashboard.js"></script>
+  <script type="module" src="js/utils/chart-expander.js"></script>
+</body>
+</html>
